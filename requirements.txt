@@ -1,0 +1,6 @@
+flask
+flask-script
+Flask-SQLAlchemy
+psycopg2
+flask-testing
+gunicorn
