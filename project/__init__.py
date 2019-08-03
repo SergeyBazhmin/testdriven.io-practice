@@ -13,7 +13,7 @@ def create_app():
 
     db.init_app(app)
 
-    from users.project.api import users_blueprint
+    from project.api.views import users_blueprint
     app.register_blueprint(users_blueprint)
 
     return app
