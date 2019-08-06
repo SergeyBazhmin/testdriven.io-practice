@@ -26,7 +26,8 @@ class TestUserModel(BaseTestCase):
         add_user('justatest', 'test@test.com')
         duplicate_user = User(
             username='justatest',
-            email='test@test2.com'
+            email='test@test2.com',
+            password='test'
         )
         db.session.add(duplicate_user)
         self.assertRaises(IntegrityError, db.session.commit)
@@ -35,7 +36,8 @@ class TestUserModel(BaseTestCase):
         add_user('justatest', 'test@test.com')
         duplicate_user = User(
             username='justanothertest',
-            email='test@test.com'
+            email='test@test.com',
+            password='test'
         )
         db.session.add(duplicate_user)
         self.assertRaises(IntegrityError, db.session.commit)

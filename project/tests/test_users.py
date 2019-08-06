@@ -111,7 +111,7 @@ class TestUserService(BaseTestCase):
             self.assertIn('fail', status(payload))
 
     def test_single_user(self):
-        user = User(username='michael', email='michael@realpython.com')
+        user = User('michael', 'michael@realpython.com', 'test')
         db.session.add(user)
         db.session.commit()
         with self.client:
@@ -140,7 +140,7 @@ class TestUserService(BaseTestCase):
             self.assertIn('fail', status(payload))
 
     def test_single_user(self):
-        user = add_user('michael', 'michael@realpython.com')
+        user = add_user('michael', 'michael@realpython.com', 'test')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             payload = json.loads(response.data.decode())
@@ -151,8 +151,8 @@ class TestUserService(BaseTestCase):
 
     def test_all_users(self):
         created = datetime.datetime.utcnow() + datetime.timedelta(-30)
-        add_user('michael', 'michael@realpython.com', created)
-        add_user('fletcher', 'fletcher@realpython.com')
+        add_user('michael', 'michael@realpython.com', 'test', created)
+        add_user('fletcher', 'fletcher@realpython.com', 'test')
         with self.client:
             response = self.client.get(f'/users')
             payload = json.loads(response.data.decode())
