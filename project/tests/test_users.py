@@ -150,9 +150,9 @@ class TestUserService(BaseTestCase):
             self.assertEqual(len(users(data(payload))), 2)
             self.assertTrue('created_at' in first(users(data(payload))))
             self.assertTrue('created_at' in last(users(data(payload))))
-            self.assertIn('michael', username(first(users(data(payload)))))
-            self.assertIn('michael@realpython.com', email(first(users(data(payload)))))
-            self.assertIn('fletcher', username(last(users(data(payload)))))
-            self.assertIn('fletcher@realpython.com', email(last(users(data(payload)))))
+            self.assertIn('michael', username(last(users(data(payload)))))
+            self.assertIn('michael@realpython.com', email(last(users(data(payload)))))
+            self.assertIn('fletcher', username(first(users(data(payload)))))
+            self.assertIn('fletcher@realpython.com', email(first(users(data(payload)))))
             self.assertIn('success', status(payload))
 
