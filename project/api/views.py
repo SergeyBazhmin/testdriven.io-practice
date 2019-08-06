@@ -1,10 +1,8 @@
 from flask import Blueprint, jsonify, request
-
-from project.api.models import User
-from project import db
-
 from sqlalchemy import exc
 
+from project import db
+from project.api.models import User
 
 users_blueprint = Blueprint('users', __name__)
 

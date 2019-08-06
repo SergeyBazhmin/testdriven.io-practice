@@ -6,3 +6,4 @@ flask-testing
 gunicorn
 coverage
 flask-cors
+flask-migrate

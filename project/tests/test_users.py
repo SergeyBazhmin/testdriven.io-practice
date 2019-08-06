@@ -7,12 +7,7 @@ from project import db
 
 import datetime
 
-
-def add_user(username, email, created_at=datetime.datetime.utcnow()):
-    user = User(username=username, email=email, created_at=created_at)
-    db.session.add(user)
-    db.session.commit()
-    return user
+from project.tests.utils import add_user
 
 
 def extractor(x, field): return x[field]
@@ -76,7 +71,7 @@ class TestUserService(BaseTestCase):
             self.assertIn('Invalid payload.', message(payload))
             self.assertIn('fail', status(payload))
 
-    def test_add_user_duplicate_user(self):
+    def test_add_user_duplicate_email(self):
         with self.client:
             self.client.post(
                 '/users',
@@ -155,4 +150,3 @@ class TestUserService(BaseTestCase):
             self.assertIn('fletcher', username(first(users(data(payload)))))
             self.assertIn('fletcher@realpython.com', email(first(users(data(payload)))))
             self.assertIn('success', status(payload))
-
