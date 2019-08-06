@@ -95,6 +95,21 @@ class TestUserService(BaseTestCase):
             self.assertIn('Sorry. That email already exists.', message(payload))
             self.assertIn('fail', status(payload))
 
+    def test_add_user_invalid_json_keys_no_password(self):
+        with self.client:
+            response = self.client.post(
+                '/users',
+                data=json.dumps(dict(
+                    username='michael',
+                    email='michael@realpython.com'
+                )),
+                content_type='application/json'
+            )
+            payload = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 400)
+            self.assertIn('Invalid payload.', message(payload))
+            self.assertIn('fail', status(payload))
+
     def test_single_user(self):
         user = User(username='michael', email='michael@realpython.com')
         db.session.add(user)

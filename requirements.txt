@@ -7,3 +7,4 @@ gunicorn
 coverage
 flask-cors
 flask-migrate
+flask-bcrypt
