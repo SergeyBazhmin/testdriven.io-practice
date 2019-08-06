@@ -5,9 +5,11 @@ from project.tests.base import BaseTestCase
 from project.api.models import User
 from project import db
 
+import datetime
 
-def add_user(username, email):
-    user = User(username=username, email=email)
+
+def add_user(username, email, created_at=datetime.datetime.utcnow()):
+    user = User(username=username, email=email, created_at=created_at)
     db.session.add(user)
     db.session.commit()
     return user
@@ -138,7 +140,8 @@ class TestUserService(BaseTestCase):
             self.assertIn('michael@realpython.com', email(data(payload)))
 
     def test_all_users(self):
-        add_user('michael', 'michael@realpython.com')
+        created = datetime.datetime.utcnow() + datetime.timedelta(-30)
+        add_user('michael', 'michael@realpython.com', created)
         add_user('fletcher', 'fletcher@realpython.com')
         with self.client:
             response = self.client.get(f'/users')
