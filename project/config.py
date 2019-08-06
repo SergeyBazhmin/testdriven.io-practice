@@ -6,7 +6,7 @@ class BaseConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'my_precious'
-    BCRYPT_LOG_ROUNDS=13
+    BCRYPT_LOG_ROUNDS = 13
 
 
 class DevelopmentConfig(BaseConfig):

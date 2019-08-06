@@ -23,7 +23,7 @@ class TestUserModel(BaseTestCase):
         self.assertTrue(user.created_at)
 
     def test_add_user_duplicate_username(self):
-        add_user('justatest', 'test@test.com')
+        add_user('justatest', 'test@test.com', 'test')
         duplicate_user = User(
             username='justatest',
             email='test@test2.com',
