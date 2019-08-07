@@ -38,7 +38,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps(dict(
                     username='michael',
-                    email='michael@realpython.com'
+                    email='michael@realpython.com',
+                    password='test'
                 )),
                 content_type='application/json'
             )
@@ -93,6 +94,7 @@ class TestUserService(BaseTestCase):
             )
 
             payload = json.loads(response.data.decode())
+            print(payload)
             self.assertEqual(response.status_code, 400)
             self.assertIn('Sorry. That email already exists.', message(payload))
             self.assertIn('fail', status(payload))
